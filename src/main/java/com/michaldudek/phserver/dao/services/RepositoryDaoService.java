@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class RepositoryServiceDAO {
+public class RepositoryDaoService {
 
     private final RepositoryRepository repositoryRepository;
 
     @Autowired
-    public RepositoryServiceDAO(RepositoryRepository repositoryRepository) {
+    public RepositoryDaoService(RepositoryRepository repositoryRepository) {
         this.repositoryRepository = repositoryRepository;
     }
 
