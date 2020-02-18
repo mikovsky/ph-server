@@ -24,8 +24,8 @@
 
 
 ## Github API
--   [ ] get user with :username - GET /users/:username
--   [ ] get users repositories - GET /users/:username/repos
+-   [x] get user with :username - GET /users/:username
+-   [x] get users repositories - GET /users/:username/repos
 
 
 ## Endpoints

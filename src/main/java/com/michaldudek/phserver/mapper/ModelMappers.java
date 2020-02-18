@@ -8,8 +8,19 @@ import com.michaldudek.phserver.payload.RepositoryPayload;
 import com.michaldudek.phserver.payload.UserPayload;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
+
 @Component
 public class ModelMappers {
+
+    public List<Repository> mapRepositoriesPayloadToRepositories(List<RepositoryPayload> payloads) {
+        return payloads
+                .stream()
+                .map(this::mapRepositoryPayloadToRepository)
+                .collect(toList());
+    }
 
     public Repository mapRepositoryPayloadToRepository(RepositoryPayload payload) {
         return Repository.builder()
