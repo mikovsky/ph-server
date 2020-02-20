@@ -7,16 +7,13 @@ import com.michaldudek.phserver.payload.RepositoryPayload;
 import com.michaldudek.phserver.payload.UserPayload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.Collection;
 
 import static java.util.Collections.emptyList;
-import static java.util.Optional.empty;
 import static java.util.Optional.ofNullable;
 
 @Service
@@ -35,23 +32,20 @@ public class GithubService {
     }
 
     public User getUserWithUsername(String username) {
-        UserPayload userPayload = fetchUser(username).get();
+        UserPayload userPayload = fetchUser(username);
         return modelMappers.mapUserPayloadToUser(userPayload);
     }
 
-    public List<Repository> getUsersRepositories(String username) {
-        List<RepositoryPayload> repositoriesPayload = fetchUsersRepositories(username);
+    public Collection<Repository> getUsersRepositories(String username) {
+        Collection<RepositoryPayload> repositoriesPayload = fetchUsersRepositories(username);
         return modelMappers.mapRepositoriesPayloadToRepositories(repositoriesPayload);
     }
 
-    private Optional<UserPayload> fetchUser(String username) {
-        ResponseEntity<UserPayload> responseEntity = restTemplate.getForEntity(BASE_URL + "/users/" + username, UserPayload.class);
-        return responseEntity.getStatusCode().is2xxSuccessful()
-                ? ofNullable(responseEntity.getBody())
-                : empty();
+    private UserPayload fetchUser(String username) {
+        return restTemplate.getForObject(BASE_URL + "/users/" + username, UserPayload.class);
     }
 
-    private List<RepositoryPayload> fetchUsersRepositories(String username) {
+    private Collection<RepositoryPayload> fetchUsersRepositories(String username) {
         RepositoryPayload[] repositoriesPayload = restTemplate.getForObject(BASE_URL + "/users/" + username + "/repos", RepositoryPayload[].class);
         return ofNullable(repositoriesPayload)
                 .map(Arrays::asList)
