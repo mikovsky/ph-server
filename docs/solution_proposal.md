@@ -29,14 +29,14 @@
 
 
 ## Endpoints
--   [ ] Users
-    -   [ ] get all users from database - GET /api/users
-    -   [ ] add new user to database - POST /api/users/:username
-        -   [ ] get User with :username via Github API
-        -   [ ] map it and store it in database
-    -   [ ] remove existing user from database - DELETE /api/users/:username
-        -   [ ] delete user from database
-        -   [ ] delete all its repositories from database
+-   [x] Users
+    -   [x] get all users from database - GET /api/users
+    -   [x] add new user to database - POST /api/users/:username
+        -   [x] get User with :username via Github API
+        -   [x] map it and store it in database
+    -   [x] remove existing user from database - DELETE /api/users/:username
+        -   [x] delete user from database
+        -   [x] delete all its repositories from database
         
         
 -   [ ] Repositories

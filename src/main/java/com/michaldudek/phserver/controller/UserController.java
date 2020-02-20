@@ -5,10 +5,13 @@ import com.michaldudek.phserver.dao.services.UserDaoService;
 import com.michaldudek.phserver.model.User;
 import com.michaldudek.phserver.service.GithubService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static java.lang.String.format;
 
 @RestController
 @RequestMapping("/api/users")
@@ -33,16 +36,19 @@ public class UserController {
     }
 
     @PostMapping("/{username}")
-    public ResponseEntity<User> addUser(@PathVariable String username) {
+    public ResponseEntity<String> addUser(@PathVariable String username) {
         User user = githubService.getUserWithUsername(username);
-        return ResponseEntity.ok(userDaoService.save(user));
+        User savedUser = userDaoService.save(user);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(format("User '%s' created", savedUser.getUsername()));
     }
 
     @DeleteMapping("/{username}")
     public ResponseEntity<String> deleteUser(@PathVariable String username) {
         userDaoService.deleteByUsername(username);
         repositoryDaoService.deleteAllByOwnerUsername(username);
-        return ResponseEntity.ok("Deleted");
+        return ResponseEntity.ok(String.format("User '%s' deleted", username));
     }
 
 }
