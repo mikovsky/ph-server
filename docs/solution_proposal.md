@@ -39,6 +39,13 @@
         -   [x] delete all its repositories from database
         
         
--   [ ] Repositories
-    -   [ ] get all repositories from database - GET /api/repositories
-    -   [ ] get all users repositories from database - GET /api/repositories/:username
+-   [x] Repositories
+    -   [x] get all repositories from database - GET /api/repositories
+    -   [x] get all users repositories from database - GET /api/repositories/:username
+    -   [x] force fetch of users repositories - GET /api/repositories/refresh/:username
+    
+    
+## Task Scheduler
+-   [ ] Repository Fetcher Task
+    -   [ ] Fetch repositories for all users registered in database every 10 minutes
+    -   [ ] Store repositories in database

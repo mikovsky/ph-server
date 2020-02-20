@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Collection;
 
 import static java.lang.String.format;
 
@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
+    public ResponseEntity<Collection<User>> getAllUsers() {
         return ResponseEntity.ok(userDaoService.findAll());
     }
 
@@ -48,7 +48,7 @@ public class UserController {
     public ResponseEntity<String> deleteUser(@PathVariable String username) {
         userDaoService.deleteByUsername(username);
         repositoryDaoService.deleteAllByOwnerUsername(username);
-        return ResponseEntity.ok(String.format("User '%s' deleted", username));
+        return ResponseEntity.ok(format("User '%s' deleted", username));
     }
 
 }
