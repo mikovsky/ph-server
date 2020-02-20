@@ -43,9 +43,6 @@ public class GithubService {
 
     private UserPayload fetchUser(String username) {
         return restTemplate.getForObject(BASE_URL + "/users/" + username, UserPayload.class);
-//        return responseEntity.getStatusCode().is2xxSuccessful()
-//                ? ofNullable(responseEntity.getBody())
-//                : empty();
     }
 
     private Collection<RepositoryPayload> fetchUsersRepositories(String username) {

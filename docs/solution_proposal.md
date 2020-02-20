@@ -46,6 +46,6 @@
     
     
 ## Task Scheduler
--   [ ] Repository Fetcher Task
-    -   [ ] Fetch repositories for all users registered in database every 10 minutes
-    -   [ ] Store repositories in database
+-   [x] Repository Fetcher Task
+    -   [x] Fetch repositories for all users registered in database every 5 minutes
+    -   [x] Store repositories in database
