@@ -10,4 +10,4 @@ set -x
 VERSION=$(mvn help:evaluate -Dexpression=project.version | grep "^[^\[]")
 set +x
 
-cp "/target/${NAME}-${VERSION}.jar" "/mnt/zonedisk1/daily_artifacts"
+sudo cp "/target/${NAME}-${VERSION}.jar" "/mnt/zonedisk1/daily_artifacts"
