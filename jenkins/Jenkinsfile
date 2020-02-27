@@ -33,7 +33,7 @@ pipeline {
         }
         stage('Copy Artifacts') {
             steps {
-                sh './jenkins/scripts/copyArtifacts.sh'
+                sh 'sudo ./jenkins/scripts/copyArtifacts.sh'
             }
         }
     }
