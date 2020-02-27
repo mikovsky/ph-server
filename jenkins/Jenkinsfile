@@ -34,6 +34,13 @@ pipeline {
         stage('Copy Artifacts') {
             steps {
                 sh 'sudo ./jenkins/scripts/copyArtifacts.sh'
+                set -x
+                sh 'NAME=$(mvn help:evaluate -Dexpression=project.name | grep "^[^\[]")'
+                set +x
+                set -x
+                sh 'VERSION=$(mvn help:evaluate -Dexpression=project.version | grep "^[^\[]")'
+                set +x
+                sh 'sudo cp /target/${NAME}-${VERSION}.jar" "/mnt/zonedisk1/daily_artifacts'
             }
         }
     }
